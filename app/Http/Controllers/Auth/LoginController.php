@@ -49,67 +49,54 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->all();
+        $remember = $request->remember != null ? true : false;
+        // dd($remember);
         if(Auth::attempt([
             'email'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 1
-        ]) || Auth::attempt([
+        ], $remember) || Auth::attempt([
             'username'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 1
-        ])){
-            if(isset($request->remember)){
-                $user = Auth::getProvider()->retrieveByCredentials($credentials);
-                Auth::login($user, true);
-            }
-
+        ], $remember)){
             Session::put('sweetalert', 'warning');
             return redirect()->route('dashboard')->with('alert', 'Selamat Datang!');
         }elseif(Auth::attempt([
             'email'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 2
-        ]) || Auth::attempt([
+        ], $remember) || Auth::attempt([
             'username'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 2
-        ])){
-            if(isset($request->remember)){
-                $user = Auth::getProvider()->retrieveByCredentials($credentials);
-                Auth::login($user, true);
-            }
-
+        ], $remember)){
             Session::put('sweetalert', 'warning');
             return redirect()->route('dashboard')->with('alert', 'Selamat Datang!');
         }elseif(Auth::attempt([
             'email'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 3
-        ]) || Auth::attempt([
+        ], $remember) || Auth::attempt([
             'username'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 3
-        ])){
-            if(isset($request->remember)){
-                $user = Auth::getProvider()->retrieveByCredentials($credentials);
-                Auth::login($user, true);
-            }
-
+        ], $remember)){
             Session::put('sweetalert', 'warning');
             return redirect()->route('dashboard')->with('alert', 'Selamat Datang!');
         }elseif(Auth::attempt([
             'email'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 4
-        ])  || Auth::attempt([
+        ], $remember)  || Auth::attempt([
             'username'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 4
-        ])){
-            if(isset($request->remember)){
-                $user = Auth::getProvider()->retrieveByCredentials($credentials);
-                Auth::login($user, true);
-            }
+        ], $remember)){
+            // if(isset($request->remember)){
+            //     $user = Auth::getProvider()->retrieveByCredentials($credentials);
+            //     Auth::login($user, true);
+            // }
 
             Session::put('sweetalert', 'warning');
             return redirect()->route('dashboard')->with('alert', 'Selamat Datang!');
@@ -117,15 +104,11 @@ class LoginController extends Controller
             'email'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 5
-        ]) || Auth::attempt([
+        ], $remember) || Auth::attempt([
             'username'     => $request->email,
             'password'  => $request->password,
             'role_id'      => 5
-        ])){
-            if(isset($request->remember)){
-                $user = Auth::getProvider()->retrieveByCredentials($credentials);
-                Auth::login($user, true);
-            }
+        ], $remember)){
 
             Session::put('sweetalert', 'warning');
             return redirect()->route('dashboard')->with('alert', 'Selamat Datang!');

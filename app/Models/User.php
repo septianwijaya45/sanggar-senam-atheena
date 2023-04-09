@@ -49,6 +49,16 @@ class User extends Authenticatable
     }
     //  ------------- Relationship --------------- //
 
+    // Check Image
+    public function getImage()
+    {
+        if(!$this->image || $this->image == null){
+            return 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa1DxUfQMzO1sop6bSYve0McW6ynr6zEgfwJFnuORImw&s';
+        }
+
+        return asset('backend/images/profile/'.$this->image);
+    }
+
      // CheckRole
      private function getUserRole()
      {
